@@ -22,6 +22,7 @@ do
    ssh -l $MYLOGIN_ID $target hostname
    ssh -l $MYLOGIN_ID $target date
    ssh -l $MYLOGIN_ID $target uptime
+   ssh -l $MYLOGIN_ID $target ifconfig | grep HWaddr
 done
 echo
 

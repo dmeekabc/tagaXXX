@@ -9,7 +9,7 @@ source $TAGA_DIR/config
 REMOTE_NODE=$REBOOT_ONE_LIST
 REMOTE_NODE_ITFC=$REMOTE_ONE_LIST_ITFC
 
-echo $0 : $MYIP :  executing at `date`
+echo $0 : $MYIP remote to $REMOTE_NODE :  executing at `date`
 
 if [ $1 -eq 1 ] ; then
    echo mkfifo /tmp/packet_capture
