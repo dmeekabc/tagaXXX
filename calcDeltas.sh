@@ -6,16 +6,24 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
-rm delta.out; touch delta.out
+# vars
+DELTA_FILE=/tmp/iboa/log/delta.out
+PCAP_DATA_FILE=/tmp/iboa/log/ppc.out
+TMP_FILE=/tmp/iboa/log/tmp.txt
+TMP2_FILE=/tmp/iboa/log/tmp2.txt
 
-cp ppc.out tmp.txt
-let lines=`cat tmp.txt | wc -l`
+# init
+rm $DELTA_FILE ; touch $DELTA_FILE 
+cp $PCAP_DATA_FILE $TMP_FILE 
+
+# get line count
+let lines=`cat $TMP_FILE | wc -l`
 
 let i=0
 while [ $lines -gt 0 ] 
 do
 
-   input=`head -n 1 tmp.txt`
+   input=`head -n 1 $TMP_FILE`
    echo $input > input.txt
    read input1 input2 < input.txt
 #   echo input1: $input1 
@@ -23,21 +31,20 @@ do
 
    let delta=$input1-$input2
 #   echo $delta
-   echo $delta >> delta.out
+   echo $delta >> $DELTA_FILE 
 
    let i=$i+1
 
    let MOD=$i%100
 
-   let lines=`cat tmp.txt | wc -l`
+   let lines=`cat $TMP_FILE | wc -l`
 
    if [ $MOD -eq 0 ] ; then
-      echo $i : $lines remain
+      echo $i lines processed : $lines lines remain
    fi
 
-   cat tmp.txt | sed 1d > tmp2.txt
-   mv tmp2.txt tmp.txt
-
+   cat $TMP_FILE | sed 1d > $TMP2_FILE
+   mv $TMP2_FILE $TMP_FILE
 
 done
 
