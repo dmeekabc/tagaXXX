@@ -18,7 +18,7 @@ fi
 for target in $targetList
 do
    echo
-   echo processing $target
+   echo `date` : probing $target
    echo $target: `ssh -l $MYLOGIN_ID $target hostname`
    echo $target: `ssh -l $MYLOGIN_ID $target date`
    echo $target: `ssh -l $MYLOGIN_ID $target uptime`
