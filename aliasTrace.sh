@@ -6,6 +6,22 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
+echo
+echo Please confirm that the following has been performed:
+echo "alias > aliasExamples.txt"
+
+# issue confirmation prompt
+./confirm.sh
+
+let response=$?
+if [ $response -eq 1 ]; then
+  echo; echo Confirmed, continuing....; echo
+else
+  echo; echo Not Confirmed, exiting with no action...; echo
+  exit
+fi
+
+
 if [ $# -eq 1 ]; then
    echo; echo $0 : $MYIP :  executing at `date`; echo
 else
