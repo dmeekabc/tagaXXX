@@ -153,6 +153,7 @@ else
    echo "alias grem='TAGA_DIR=~/scripts/taga; \$TAGA_DIR/remoteLoginAll.sh'" >> $IBOA_USER_FILE
    echo "alias vc='TAGA_DIR=~/scripts/taga; vi \$TAGA_DIR/config'"         >> $IBOA_USER_FILE
    echo "alias vt='TAGA_DIR=~/scripts/taga; vi \$TAGA_DIR/targetList.sh'"  >> $IBOA_USER_FILE
+   echo "alias ta='TAGA_DIR=~/scripts/taga; cd $TAGA_DIR; ./traceAlias.sh'" >> $IBOA_USER_FILE
    echo "################################################################" >> $IBOA_USER_FILE
    echo "# END TAGA Exensions are included here                              " >> $IBOA_USER_FILE
    echo "################################################################" >> $IBOA_USER_FILE

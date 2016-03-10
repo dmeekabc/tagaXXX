@@ -11,6 +11,21 @@ NEW_LOCATION_REPLACE_STRING="\\/tmp\\/iboa"
 NEW_LOCATION=/opt/iboa
 NEW_LOCATION_REPLACE_STRING="\\/opt\\/iboa"
 
+echo
+echo Notice: If confirmed, this command will \
+     relocate the TAGA dir to $NEW_LOCATION
+
+# issue confirmation prompt
+./confirm.sh
+# check the response
+let response=$?
+if [ $response -eq 1 ]; then
+  echo; echo Confirmed, $0 continuing....; echo
+else
+  echo; echo Not Confirmed, $0 exiting with no action...; echo
+  exit
+fi
+
 sudo mkdir -p $NEW_LOCATION
 sudo chmod 777 $NEW_LOCATION
 
