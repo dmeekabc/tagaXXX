@@ -6,6 +6,8 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
+ALIAS_FILE=$TAGA_DIR/aliasExamples.txt
+
 # validate input
 if [ $# -eq 1 ]; then
    echo; echo $0 : $MYIP :  executing at `date`; echo
@@ -25,7 +27,7 @@ fi
 if [ $CONFIRM_REQD -eq 1 ] ; then
    # ensure proper setup
    echo Please confirm that the following has been performed:
-   echo "alias > aliasExamples.txt"
+   echo "alias > $ALIAS_FILE"
    # issue confirmation prompt
    ./confirm.sh
    # check the response
@@ -38,9 +40,9 @@ if [ $CONFIRM_REQD -eq 1 ] ; then
    fi
 fi
 
-
 # source the aliases
-source ./aliasExamples.txt
+echo source $ALIAS_FILE
+source $ALIAS_FILE
 
 # init the counter
 let i=1
@@ -54,7 +56,7 @@ if [ $RET -eq 0 ]; then
    aliasNext=`echo $aliasNext | cut -d\' -f 2`
 else
    echo Error: does $1 alias exist?; echo
-   echo "Hint: considering running: alias > aliasExamples.txt"; echo
+   echo "Hint: considering running: alias > $ALIAS_FILE"; echo
    exit
 fi 
 
