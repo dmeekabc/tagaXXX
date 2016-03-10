@@ -219,7 +219,8 @@ do
   let i=$padlen
   while [ $i -gt 0 ];
   do
-     row="$row."
+     #row="$row."
+     row="$row "
      let i=$i-1
   done
 
@@ -239,9 +240,9 @@ do
   # append the cumulative row total to the row output
   row="$row $row_cumulative"
 
-  echo $row
-  echo $row >> $TAGA_DIR/counts.txt
-  echo $row >> $TAGA_DIR/countsReceives.txt
+  echo "$row"
+  echo "$row" >> $TAGA_DIR/counts.txt
+  echo "$row" >> $TAGA_DIR/countsReceives.txt
  
   # dlm temp find me
   #p_val=$i
@@ -317,7 +318,8 @@ let padlen=$ROW_SIZE-$rowlen
 let i=$padlen
 while [ $i -gt 0 ];
 do
-  column_cumulative=$column_cumulative.
+  #column_cumulative=$column_cumulative.
+  column_cumulative="$column_cumulative "
   let i=$i-1
 done
 
@@ -349,8 +351,8 @@ echo >> $TAGA_DIR/countsReceives.txt
 
 # Print the final (Totals) row
 row="Receiver Totals:.  $column_cumulative"
-echo $row
-echo $row >> $TAGA_DIR/counts.txt
-echo $row >> $TAGA_DIR/countsReceives.txt
+echo "$row"
+echo "$row" >> $TAGA_DIR/counts.txt
+echo "$row" >> $TAGA_DIR/countsReceives.txt
 
 echo

@@ -413,8 +413,9 @@ do
   let i=$padlen
   while [ $i -gt 0 ];
   do
-     #row="$row"" "
-     row="$row."
+     # dlm temp find me
+     #row='"$row "'
+     row="$row "
      let i=$i-1
   done
 
@@ -435,9 +436,9 @@ do
   # append the cumulative row total to the row output
   row="$row $row_cumulative"
 
-  echo $row
-  echo $row >> $TAGA_DIR/counts.txt
-  echo $row >> $TAGA_DIR/countsSends.txt
+  echo "$row"
+  echo "$row" >> $TAGA_DIR/counts.txt
+  echo "$row" >> $TAGA_DIR/countsSends.txt
 
 done
 
