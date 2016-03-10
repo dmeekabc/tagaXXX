@@ -249,6 +249,7 @@ column_cumulative="$column_cumulative"" "
 let ROW_SIZE=48
 let ROW_SIZE=51
 let ROW_SIZE=47
+let ROW_SIZE=46
 let rowlen=`echo $column_cumulative | awk '{print length($0)}'`
 let padlen=$ROW_SIZE-$rowlen
 
