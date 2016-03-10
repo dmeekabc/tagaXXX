@@ -6,7 +6,12 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
-echo $0 : $MYIP :  executing at `date`; echo
+if [ $# -eq 1 ]; then
+   echo; echo $0 : $MYIP :  executing at `date`; echo
+else
+   echo; echo $0 requires one parameter, exiting with no action...; echo
+   exit
+fi
 
 source ~/.bashrc
 
@@ -18,7 +23,6 @@ source ./aliasExamples.txt
 
 aliasNext=`alias $1`
 RET=$?
-echo
 echo $aliasNext
 echo
 
