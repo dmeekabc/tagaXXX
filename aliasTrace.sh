@@ -48,11 +48,14 @@ let i=1
 # process the input
 aliasNext=`alias $1`
 RET=$?
-echo $i: $aliasNext
-#echo
 
-aliasNext=`echo $aliasNext | cut -d\' -f 2`
-#RET=$?
+if [ $RET -eq 0 ]; then
+   echo $i: $aliasNext
+   aliasNext=`echo $aliasNext | cut -d\' -f 2`
+else
+   echo Error: does $1 alias exist?; echo
+   exit
+fi 
 
 # iterate until we hit the end of the trace
 while [ $RET -eq 0 ] 
