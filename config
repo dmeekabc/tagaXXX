@@ -32,7 +32,18 @@ TESTTYPE="UCAST_UDP" # UDP UCAST
 ####################################################
 VARIABLE_TEST="var_test.sh"
 
-REBOOT_ONE_LIST=10.0.0.21
+# Remote Target Configuration
+REBOOT_ONE_LIST=10.0.0.21        # wireshark, other
+REBOOT_ONE_LIST=192.168.43.188   # wireshark, other
+REBOOT_ONE_LIST=192.168.43.208   # wireshark, other
+REBOOT_ONE_LIST=192.168.43.157   # wireshark, other
+REBOOT_ONE_LIST=192.168.43.69   # wireshark, other
+
+REMOTE_ONE_LIST_ITFC=wlp3s0    # 43.124 , wireshark, oher
+REMOTE_ONE_LIST_ITFC=wlan0     # 43.188, wireshark, oher
+REMOTE_ONE_LIST_ITFC=wlp2s0    # 43.208, wireshark, oher
+REMOTE_ONE_LIST_ITFC=wlo1      # 43.157, wireshark, oher
+REMOTE_ONE_LIST_ITFC=wlo1      # 43.69, wireshark, oher
 
 ####################################################
 # Portability Section, this section requires update 
@@ -276,6 +287,12 @@ for ip in $MYIPCANDIDATES; do if echo $targetList | grep $ip >/dev/null ; then M
 #echo CANDIDATES: $MYIPCANDIDATES
 #echo MYIP: $MYIP
 
+# Other (One) Target Config
+# other list configured automatically based on MYIP
+OTHER_LIST=`echo $targetList | sed s/$MYIP//g | cut -d" " -f 1 `
+OTHER_LIST=`echo $targetList | sed s/$MYIP//g `
+#echo $OTHER_ONE_LIST
+
 ##############################################
 # others / static constants
 ##############################################
@@ -289,4 +306,4 @@ TEST_DESCRIPTION="taga_anycast"
 # Master Machine
 # run time insert from runLoop.sh
 ##############################################
-MASTER=10.0.0.27
+MASTER=192.168.43.124
