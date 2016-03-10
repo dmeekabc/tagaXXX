@@ -20,7 +20,7 @@ cp $PCAP_DATA_FILE $TMP_FILE
 let lines=`cat $TMP_FILE | wc -l`
 
 let i=0
-while [ $lines -gt 0 ] 
+while [ $lines -gt 1 ] 
 do
 
    input=`head -n 1 $TMP_FILE`
@@ -48,4 +48,6 @@ do
 
 done
 
+
+echo; echo Deltas are in $DELTA_FILE; echo
 
