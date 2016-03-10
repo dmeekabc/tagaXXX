@@ -42,7 +42,7 @@ if [ $CONFIRM_REQD -eq 1 ] ; then
 fi
 
 # source the aliases
-echo source $ALIAS_FILE
+echo source $ALIAS_FILE; echo
 source $ALIAS_FILE
 
 # init the counter
@@ -67,7 +67,8 @@ do
    # increment the count
    let i=$i+1
    echo $aliasNext
-   aliasNext=`alias $aliasNext` 2>/dev/null
+   #aliasNext=`alias $aliasNext 2>/dev/null` 2>/dev/null
+   aliasNext=`alias $aliasNext 2>/dev/null` 
    RET=$?
    if [ $RET -eq 0 ]; then
       echo
