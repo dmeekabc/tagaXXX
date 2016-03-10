@@ -49,9 +49,6 @@ done
 for target in $targetList
 do
 
-  # reset the per target cumulative
-  #let column_target_cumulative_count=0
-
   # build Row output
 
   # init the row cumulative
@@ -59,7 +56,6 @@ do
 
   # create the column containers
   let i=$i+1
-  #let i.pt=$i
 
   # pad target name as necessary to have nice output
   tgtlen=`echo $target | awk '{print length($0)}'`
@@ -93,10 +89,6 @@ do
 
      # create the inner loop column containers
      let j=$j+1
-     #p_val=$j
-     #active_id=$p_val
-     #declare "flag_$active_id"=0
-     #let i.pt=$i
 
     if [ $target == $target2 ] ; then
       # skip self
@@ -131,50 +123,21 @@ do
 
       # add this count to the cumulative
       let row_cumulative=$row_cumulative+$curcount
-      #column_cumulative=$column_cumulative+$curcount
 
-      #echo 11111111111 : i:$i j:$j : $target  : $curcount
       let column_cumulative_count=$column_cumulative_count+$curcount
 
-      #if [ $i -eq $j ]; then
-        let column_target_cumulative_count=$column_target_cumulative_count+curcount
-      #fi
-
-      # dlm temp find me
-      #p_val=$i
+      let column_target_cumulative_count=$column_target_cumulative_count+curcount
 
       p_val=$j
       active_id=$p_val
-#      declare "flag_$active_id"=0
-
-      #let myvalue=$column_cumulative_count
 
       let myvalue=$column_target_cumulative_count
 
-       #echo declaring $j $myvalue
-
-#      declare "flag_$active_id"=$myvalue
-
-#      declare "flag_$active_id"=$myvalue
-
       mytmpvar="flag_$active_id"
      
-      #echo 1111
-      #echo "${!mytmpvar}"
-      #echo 222222
-      #declare "$mytmpvar"=$mytmpvar+200
-      #let othertmp="${!mytmpvar}"+200
-
       let othertmp="${!mytmpvar}"+$curcount
 
-      #declare "$mytmpvar"="${!mytmpvar}"+200
-
       declare "$mytmpvar"=$othertmp
-
-      #echo "${!mytmpvar}"
-      #echo 3333333
-       
-
 
       let mycount=$curcount
       if [ $mycount -lt 10 ] ; then
@@ -209,17 +172,14 @@ do
 
   row="$row"" "
 
-  # dlm temp
   let ROW_SIZE=66
   let rowlen=`echo $row | awk '{print length($0)}'`
-#  echo $rowlen
   let padlen=$ROW_SIZE-$rowlen
 
   # add the padding
   let i=$padlen
   while [ $i -gt 0 ];
   do
-     #row="$row."
      row="$row "
      let i=$i-1
   done
@@ -244,28 +204,7 @@ do
   echo "$row" >> $TAGA_DIR/counts.txt
   echo "$row" >> $TAGA_DIR/countsReceives.txt
  
-  # dlm temp find me
-  #p_val=$i
-  #active_id=$p_val
-  ##let myvalue=$column_cumulative_count
-  #let myvalue=$column_target_cumulative_count
-  #declare "flag_$active_id"=$myvalue
-
 done
-
-
-# Build the final (Totals) row
-#for target in $targetList
-#do
-#  # init the columns cumulative
-#  let i=$i+1
-#  column_cumulative=$column_cumulative" "
-#  column_cumulative=$column_cumulative" "$i.pt
-#
-#  v="flag_$active_id"
-#
-#done
-#
 
 
 let count=0
@@ -294,7 +233,6 @@ do
      echo nothing to pad >/dev/null
   fi
 
-  #column_cumulative=$column_cumulative" "`echo "${!v}"`
   column_cumulative=$column_cumulative" "$value
 
   let count=$count-1
@@ -306,27 +244,20 @@ done
 
 column_cumulative="$column_cumulative"" "
 
-# dlm temp
-let ROW_SIZE=50
-let ROW_SIZE=49
 let ROW_SIZE=48
+let ROW_SIZE=51
 let rowlen=`echo $column_cumulative | awk '{print length($0)}'`
-#  echo $rowlen
 let padlen=$ROW_SIZE-$rowlen
 
 # add the padding
 let i=$padlen
 while [ $i -gt 0 ];
 do
-  #column_cumulative=$column_cumulative.
   column_cumulative="$column_cumulative "
   let i=$i-1
 done
 
-#column_cumulative=$column_cumulative"............................. "`echo "${!v}"`
-#column_cumulative=$column_cumulative" ............................ "$column_cumulative_count
 column_cumulative="$column_cumulative"" "
-
 
 # get the padding
 let valuelen=`echo $column_cumulative_count | awk '{print length($0)}'`
@@ -350,7 +281,7 @@ echo >> $TAGA_DIR/counts.txt
 echo >> $TAGA_DIR/countsReceives.txt
 
 # Print the final (Totals) row
-row="Receiver Totals:.  $column_cumulative"
+row="Receiver Totals:  $column_cumulative"
 echo "$row"
 echo "$row" >> $TAGA_DIR/counts.txt
 echo "$row" >> $TAGA_DIR/countsReceives.txt
