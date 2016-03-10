@@ -54,6 +54,7 @@ if [ $RET -eq 0 ]; then
    aliasNext=`echo $aliasNext | cut -d\' -f 2`
 else
    echo Error: does $1 alias exist?; echo
+   echo "Hint: considering running: alias > aliasExamples.txt"; echo
    exit
 fi 
 
