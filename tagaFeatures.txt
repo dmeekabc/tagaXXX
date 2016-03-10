@@ -22,6 +22,7 @@ TAGA Features:
   6. Auto Generation of Analytical Artifacts
   7. Auto resource utilization monitor and display
   8. Distributed Processing provides for robust data generation and collection
+  9. Policy-Based Management (e.g. Log Mgt and Network Overhead Control) (Note1)
 
   Extendability:
   -----------
@@ -44,6 +45,11 @@ TAGA Features:
   4. "Go Remote" "Probe" "Prep" "TimeTimer" and other time saving utilities
   5. Human Readable and Tailorable Timestamps
   6. Multiple Interfaces per Host supported (Note1)
+
+  Recent Additions:
+  -----------
+  1. ta - trace alias utility
+  2. rebootAll alias enhancement 
 
   Other:
   -----------
