@@ -168,6 +168,7 @@ buffer1="TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Rec'd Count:$printCo
 buflen=`echo $buffer1 | awk '{print length($0)}'`
 let ROW_SIZE=66
 let ROW_SIZE=64
+let ROW_SIZE=60
 let padlen=$ROW_SIZE-$buflen
 # add the padding
 let i=$padlen
@@ -260,6 +261,7 @@ buffer1="TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Total Count:$printCo
 buflen=`echo $buffer1 | awk '{print length($0)}'`
 let ROW_SIZE=66
 let ROW_SIZE=64
+let ROW_SIZE=60
 let padlen=$ROW_SIZE-$buflen
 # add the padding
 let i=$padlen
@@ -405,6 +407,7 @@ do
 
   # dlm temp
   let ROW_SIZE=66
+  let ROW_SIZE=62
   let rowlen=`echo $row | awk '{print length($0)}'`
 #  echo $rowlen
   let padlen=$ROW_SIZE-$rowlen

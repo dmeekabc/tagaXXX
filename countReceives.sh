@@ -173,6 +173,8 @@ do
   row="$row"" "
 
   let ROW_SIZE=66
+  let ROW_SIZE=62
+  #let ROW_SIZE=58
   let rowlen=`echo $row | awk '{print length($0)}'`
   let padlen=$ROW_SIZE-$rowlen
 
@@ -246,6 +248,7 @@ column_cumulative="$column_cumulative"" "
 
 let ROW_SIZE=48
 let ROW_SIZE=51
+let ROW_SIZE=47
 let rowlen=`echo $column_cumulative | awk '{print length($0)}'`
 let padlen=$ROW_SIZE-$rowlen
 
