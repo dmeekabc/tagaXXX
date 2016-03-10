@@ -12,8 +12,7 @@ NEW_LOCATION=/opt/iboa
 NEW_LOCATION_REPLACE_STRING="\\/opt\\/iboa"
 
 echo
-echo Notice: If confirmed, this command will \
-     relocate the TAGA dir to $NEW_LOCATION
+echo Notice: If confirmed, the TAGA dir will be relocated to: $NEW_LOCATION
 
 # issue confirmation prompt
 ./confirm.sh
