@@ -6,7 +6,8 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
-ALIAS_FILE=$TAGA_DIR/aliasExamples.txt
+#ALIAS_FILE=$TAGA_DIR/aliasExamples.txt
+ALIAS_FILE=$TAGA_DIR/aliasList.txt
 
 # validate input
 if [ $# -eq 1 ]; then
@@ -19,7 +20,7 @@ fi
 ##########################################################
 # note, prior to running this script, # run the following: 
 #
-#    alias > $TAGA_DIR/aliasExamples.txt
+#    alias > $TAGA_DIR/aliasList.txt
 ##########################################################
 
 # if confirmation, required, get the confirmation
