@@ -17,6 +17,10 @@ echo; echo GATEWAY: $MYGATEWAY
 
 while true
 do
+
+   # get the config in case it has changed
+   source $TAGA_DIR/config
+
    echo
    date
    echo
