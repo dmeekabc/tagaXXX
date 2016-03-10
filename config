@@ -18,6 +18,8 @@ MAX_ITERATIONS=1       # max iterations (Testing)
 MAX_ITERATIONS=1000000 # max iterations (Normal)
 MAX_ITERATIONS=2       # max iterations (Testing)
 MAX_ITERATIONS=4       # max iterations (Testing)
+MAX_ITERATIONS=8       # max iterations (Testing)
+MAX_ITERATIONS=20       # max iterations (Testing)
 STEPWISE_ITERATIONS=1  # Testing
 STEPWISE_ITERATIONS=0  # Normal
 
@@ -321,6 +323,12 @@ fi
 ##############################################
 # others / static constants
 ##############################################
+
+##############################################
+# POLICY MGT
+##############################################
+LOG_POLICY_VOL=10     # 10 percent by volume of /tmp
+NET_POLICY_NM_RATE=10 # 10 percent thruput rate allowed for nm traffic
 
 ##############################################
 STATUS_FILE="/tmp/taga_status.txt"
