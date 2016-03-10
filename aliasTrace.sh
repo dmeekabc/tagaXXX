@@ -14,56 +14,60 @@ else
    exit
 fi
 
-# ensure proper setup
-echo Please confirm that the following has been performed:
-echo "alias > aliasExamples.txt"
-
-# issue confirmation prompt
-./confirm.sh
-
-# check the response
-let response=$?
-if [ $response -eq 1 ]; then
-  echo; echo Confirmed, $0 continuing....; echo
-else
-  echo; echo Not Confirmed, $0 exiting with no action...; echo
-  exit
-fi
-
-#source ~/.bashrc
-
+##########################################################
 # note, prior to running this script, # run the following: 
 #
 #    alias > $TAGA_DIR/aliasExamples.txt
-#
+##########################################################
+
+# if confirmation, required, get the confirmation
+
+if [ $CONFIRM_REQD -eq 1 ] ; then
+   # ensure proper setup
+   echo Please confirm that the following has been performed:
+   echo "alias > aliasExamples.txt"
+   # issue confirmation prompt
+   ./confirm.sh
+   # check the response
+   let response=$?
+   if [ $response -eq 1 ]; then
+     echo; echo Confirmed, $0 continuing....; echo
+   else
+     echo; echo Not Confirmed, $0 exiting with no action...; echo
+     exit
+   fi
+fi
+
+
+# source the aliases
 source ./aliasExamples.txt
 
+# init the counter
 let i=1
 
+# process the input
 aliasNext=`alias $1`
 RET=$?
 echo $i: $aliasNext
 #echo
 
 aliasNext=`echo $aliasNext | cut -d\' -f 2`
-RET=$?
+#RET=$?
 
+# iterate until we hit the end of the trace
 while [ $RET -eq 0 ] 
 do
    # increment the count
    let i=$i+1
-
    echo $aliasNext
    aliasNext=`alias $aliasNext` 2>/dev/null
    RET=$?
    if [ $RET -eq 0 ]; then
       echo
       echo $i: $aliasNext
-#      echo
-      #echo RET:$RET
       aliasNext=`echo $aliasNext | cut -d\' -f 2`
    else
-      echo; echo End of the Trace 
+      echo; echo End of the Trace ; echo
    fi
 done
 

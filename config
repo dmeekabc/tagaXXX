@@ -65,7 +65,6 @@ MYPASSWD=YourPasswordGoesHere
 COMMAND=YourPrimaryCommandNameGoesHere
 PROTO_UNDER_TEST=YourProtocolUnderTestGoesHere
 
-
 DAEMON1_IP=192.168.43.69
 DAEMON2_IP=192.168.43.124
 
@@ -79,6 +78,9 @@ TIME_SYNCH_CHECK_ENABLED=1 # (Normal)
 # strict time synch?
 STRICT_TIME_SYNCH=0 # (Testing)
 STRICT_TIME_SYNCH=1 # (Normal)
+
+CONFIRM_REQD=1  # strict
+CONFIRM_REQD=0  # not strict
 
 # resource monitor (top, netstat, etc) enabled?
 RESOURCE_MON_ENABLED=0 # (Testing)
