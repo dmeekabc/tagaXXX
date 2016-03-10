@@ -14,6 +14,12 @@ if [ $? -eq 255 ]; then
   exit 255
 fi
 
+ADMIN_STATS="TAGA: ADMIN STATS: "
+ADMIN_STATS="$ADMIN_STATS \"TAGA: ADMIN STATS: \""
+echo TAGA: ADMIN STATS: $ADMIN_STATS
+START_STATS=`./adminstats.sh`
+echo START STATS: $START_STATS
+
 #########################################
 # Update the MASTER entry in the config
 #########################################
@@ -435,6 +441,15 @@ do
       echo Configuration Change Window: Change Configuration Now... $ticker
       sleep 2
    done
+   sleep 2
+
+   echo TAGA: ADMIN STATS: $ADMIN_STATS
+   echo TAGA: ADMIN STATS: $ADMIN_STATS
+   CURRENT_STATS=`./adminstats.sh`
+   echo CURRENT STATS: $CURRENT_STATS
+   #./adminstats.sh
+
+   sleep 2
    sleep 2
 
    # remove old and put current data in generic output directory
