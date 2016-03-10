@@ -14,9 +14,10 @@ hostList=`$TAGA_DIR/hostList.sh`
 ####################################################
 ALL_TESTS_DISABLED=1 # disable all tests (Testing)
 ALL_TESTS_DISABLED=0 # enable all tests (Normal)
-MAX_ITERATIONS=2       # max iterations (Testing)
 MAX_ITERATIONS=1       # max iterations (Testing)
 MAX_ITERATIONS=1000000 # max iterations (Normal)
+MAX_ITERATIONS=2       # max iterations (Testing)
+MAX_ITERATIONS=4       # max iterations (Testing)
 STEPWISE_ITERATIONS=1  # Testing
 STEPWISE_ITERATIONS=0  # Normal
 
@@ -32,7 +33,10 @@ TESTTYPE="UCAST_UDP" # UDP UCAST
 ####################################################
 VARIABLE_TEST="var_test.sh"
 
-# Remote Target Configuration
+##############################
+# Fixed List Configuration
+##############################
+
 FIXED_ONE_LIST=192.168.43.124   # wireshark, other
 FIXED_ONE_LIST=192.168.43.188   # wireshark, other
 FIXED_ONE_LIST=192.168.43.208   # wireshark, other
@@ -45,7 +49,10 @@ FIXED_ONE_LIST_ITFC=wlp2s0    # 43.208, wireshark, oher
 FIXED_ONE_LIST_ITFC=wlo1      # 43.157, wireshark, oher
 FIXED_ONE_LIST_ITFC=wlo1      # 43.69, wireshark, oher
 
+##############################
+# Variable Other List Configuration
 # Should the $OTHERS var hold single or multiple targets?
+##############################
 OTHERS="single"
 OTHERS="multiple"
 
@@ -57,6 +64,7 @@ MYLOGIN_ID=yourLoginIdGoesHere
 MYPASSWD=YourPasswordGoesHere
 COMMAND=YourPrimaryCommandNameGoesHere
 PROTO_UNDER_TEST=YourProtocolUnderTestGoesHere
+
 
 DAEMON1_IP=192.168.43.69
 DAEMON2_IP=192.168.43.124
@@ -315,7 +323,6 @@ fi
 ##############################################
 STATUS_FILE="/tmp/taga_status.txt"
 TEST_DESCRIPTION="taga_anycast"
-
 
 ##############################################
 # Master Machine
