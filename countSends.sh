@@ -113,7 +113,7 @@ else
     HOST=`cat $TAGA_DIR/hostsToIps.txt | grep $target\\\. | cut -d"." -f 5`
     SOURCE_FILE_TAG=$TEST_DESCRIPTION\_$HOST\_*$target\_
     # get receivers only and only our target
-    let targetReceivedCount=`cat $SOURCE_FILE_TAG* | cut -d">" -f 2- | grep $target | wc -l`
+    let targetReceivedCount=`cat $SOURCE_FILE_TAG* 2>/dev/null | cut -d">" -f 2- | grep $target | wc -l`
     let grossReceivedCount=$grossReceivedCount+$targetReceivedCount
   done
 fi
