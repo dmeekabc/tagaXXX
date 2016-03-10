@@ -11,7 +11,8 @@ ITFC_TO_KEEP_ALIVE=wlp2s0
 
 while true
 do
-  sudo ifconfig $ITFC_TO_KEEP_AliVE $IP_TO_KEEP_ALIVE up
+  echo sudo ifconfig $ITFC_TO_KEEP_ALIVE $IP_TO_KEEP_ALIVE up
+  sudo ifconfig $ITFC_TO_KEEP_ALIVE $IP_TO_KEEP_ALIVE up
   sleep 60
   date
 done
