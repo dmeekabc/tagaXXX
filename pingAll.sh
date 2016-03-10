@@ -9,6 +9,8 @@ source $TAGA_DIR/config
 #PING_COUNT=10
 PING_COUNT=2
 SLEEP_TIME=3
+SLEEP_TIME=1
+SLEEP_TIME=0
 
 MYGATEWAY=$NETADDRPART.1
 MYGATEWAY=`route | grep default | cut -c17-30`
@@ -17,16 +19,13 @@ echo; echo GATEWAY: $MYGATEWAY
 
 while true
 do
-
    # get the config in case it has changed
    source $TAGA_DIR/config
 
-   echo
-   date
-   echo
-
    # ping the gateway!
-   echo PINGING GATEWAY: $MYGATEWAY; echo
+   echo; echo
+   echo; echo
+   echo PINGING GATEWAY: $MYGATEWAY `date`; echo
    ping -c $PING_COUNT $MYGATEWAY
 
    sleep $SLEEP_TIME
