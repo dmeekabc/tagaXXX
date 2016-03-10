@@ -19,10 +19,10 @@ for target in $targetList
 do
    echo
    echo processing $target
-   ssh -l $MYLOGIN_ID $target hostname
-   ssh -l $MYLOGIN_ID $target date
-   ssh -l $MYLOGIN_ID $target uptime
-   ssh -l $MYLOGIN_ID $target ifconfig | grep HWaddr
+   echo $target: `ssh -l $MYLOGIN_ID $target hostname`
+   echo $target: `ssh -l $MYLOGIN_ID $target date`
+   echo $target: `ssh -l $MYLOGIN_ID $target uptime`
+   echo $target: `ssh -l $MYLOGIN_ID $target ifconfig | grep HWaddr`
 done
 echo
 
