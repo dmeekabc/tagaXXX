@@ -7,25 +7,24 @@ TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
 echo
-echo WARNING: This command will reboot the following: $REBOOT_ONE_LIST
+echo WARNING: This command will reboot the following: $FIXED_ONE_LIST
 echo
 echo Are you sure? \(y/n\) ?
 echo
 
-read input
+# issue confirmation prompt
+./confirm.sh
 
-if [ $input == 'y' ]; then
-  echo
-  echo Rebooting $REBOOT_ONE_LIST ....
-  echo
+let response=$?
+if [ $response -eq 1 ]; then
+  echo; echo Rebooting $FIXED_ONE_LIST ....; echo
 else
-  echo
-  echo Reboot $REBOOT_ONE_LIST Command Not Confirmed, Exiting without action...
-  echo
+  echo; echo Reboot $FIXED_ONE_LIST Command Not Confirmed, Exiting without action...; echo
   exit
 fi
 
-for target in $REBOOT_ONE_LIST
+# reboot
+for target in $FIXED_ONE_LIST
 do
    echo
    echo processing $target
@@ -39,7 +38,4 @@ do
 
 done
 echo
-
-#echo rebooting self now...
-#ssh -l $MYLOGIN_ID $MYIP sudo reboot <$SCRIPTS_DIR/taga/passwd.txt
 

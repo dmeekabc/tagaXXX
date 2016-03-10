@@ -33,17 +33,21 @@ TESTTYPE="UCAST_UDP" # UDP UCAST
 VARIABLE_TEST="var_test.sh"
 
 # Remote Target Configuration
-REBOOT_ONE_LIST=10.0.0.21        # wireshark, other
-REBOOT_ONE_LIST=192.168.43.188   # wireshark, other
-REBOOT_ONE_LIST=192.168.43.208   # wireshark, other
-REBOOT_ONE_LIST=192.168.43.157   # wireshark, other
-REBOOT_ONE_LIST=192.168.43.69   # wireshark, other
+FIXED_ONE_LIST=192.168.43.124   # wireshark, other
+FIXED_ONE_LIST=192.168.43.188   # wireshark, other
+FIXED_ONE_LIST=192.168.43.208   # wireshark, other
+FIXED_ONE_LIST=192.168.43.157   # wireshark, other
+FIXED_ONE_LIST=192.168.43.69   # wireshark, other
 
-REMOTE_ONE_LIST_ITFC=wlp3s0    # 43.124 , wireshark, oher
-REMOTE_ONE_LIST_ITFC=wlan0     # 43.188, wireshark, oher
-REMOTE_ONE_LIST_ITFC=wlp2s0    # 43.208, wireshark, oher
-REMOTE_ONE_LIST_ITFC=wlo1      # 43.157, wireshark, oher
-REMOTE_ONE_LIST_ITFC=wlo1      # 43.69, wireshark, oher
+FIXED_ONE_LIST_ITFC=wlp3s0    # 43.124 , wireshark, oher
+FIXED_ONE_LIST_ITFC=wlan0     # 43.188, wireshark, oher
+FIXED_ONE_LIST_ITFC=wlp2s0    # 43.208, wireshark, oher
+FIXED_ONE_LIST_ITFC=wlo1      # 43.157, wireshark, oher
+FIXED_ONE_LIST_ITFC=wlo1      # 43.69, wireshark, oher
+
+# Should the $OTHERS var hold single or multiple targets?
+OTHERS="single"
+OTHERS="multiple"
 
 ####################################################
 # Portability Section, this section requires update 
@@ -282,16 +286,27 @@ MY_NODE=`/sbin/ifconfig | grep $NETADDRPART | cut -d: -f 2 | cut -d. -f 3`
 # default to localhost
 MYIP=localhost
 # determine MYIP from candidates list
-MYIPCANDIDATES=`/sbin/ifconfig | grep $NETADDRPART | cut -d: -f 2 | cut -d" " -f 1`
-for ip in $MYIPCANDIDATES; do if echo $targetList | grep $ip >/dev/null ; then MYIP=$ip; break; else MYIP=localhost; fi; done
+MYIPCANDIDATES=`/sbin/ifconfig | grep $NETADDRPART |  \
+     cut -d: -f 2 | cut -d" " -f 1`
+for ip in $MYIPCANDIDATES; do if echo $targetList  |  \
+     grep $ip >/dev/null ; then MYIP=$ip; break;      \
+     else MYIP=localhost; fi; done
 #echo CANDIDATES: $MYIPCANDIDATES
 #echo MYIP: $MYIP
 
 # Other (One) Target Config
 # other list configured automatically based on MYIP
-OTHER_LIST=`echo $targetList | sed s/$MYIP//g | cut -d" " -f 1 `
-OTHER_LIST=`echo $targetList | sed s/$MYIP//g `
-#echo $OTHER_ONE_LIST
+TARGET_COUNT=`echo $targetList | wc -w` 
+if [ $OTHERS == "single" ] ; then
+   # single (first) other target in other list
+   if [ $TARGET_COUNT -gt 2 ]; then OTHER_LIST=`echo $targetList \
+       | sed s/$MYIP//g | cut -d" " -f 1` ;                      \
+       else OTHER_LIST=`echo $targetList | sed s/$MYIP//g` ; fi
+else
+   # multiple (all) other targets in other list
+   OTHER_LIST=`echo $targetList | sed s/$MYIP//g` 
+fi
+#echo $OTHER_LIST
 
 ##############################################
 # others / static constants

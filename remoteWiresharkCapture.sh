@@ -6,16 +6,20 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
-REMOTE_NODE=$REBOOT_ONE_LIST
-REMOTE_NODE_ITFC=$REMOTE_ONE_LIST_ITFC
+REMOTE_NODE=$FIXED_ONE_LIST
+REMOTE_NODE_ITFC=$FIXED_ONE_LIST_ITFC
 
-echo $0 : $MYIP remote to $REMOTE_NODE :  executing at `date`
+echo $0 : $MYIP remote to $REMOTE_NODE and $REMOTE_NODE_ITFC:  executing at `date`
+
+
+
+
 
 if [ $1 -eq 1 ] ; then
    echo mkfifo /tmp/packet_capture
    mkfifo /tmp/packet_capture
 elif [ $1 -eq 2 ] ; then
-   ssh $REMOTE_NODE "tcpdump -s 0 -U -n -w - -i $REMOTE_ONE_LIST_ITFC not port 22" > /tmp/packet_capture
+   ssh $REMOTE_NODE "tcpdump -s 0 -U -n -w - -i $REMOTE_NODE_ITFC not port 22" > /tmp/packet_capture
 elif [ $1 -eq 3 ] ; then
    echo sudo wireshark -k -i /tmp/packet_capture
    sudo wireshark -k -i /tmp/packet_capture
