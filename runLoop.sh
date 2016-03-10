@@ -20,8 +20,8 @@ echo TAGA: ADMIN STATS: $ADMIN_STATS
 START_STATS=`./adminstats.sh`
 TX_STATS=`./adminstats.sh TXonly`
 RX_STATS=`./adminstats.sh RXonly`
-echo $TX_STATS=`./adminstats.sh TXonly`
-echo $RX_STATS=`./adminstats.sh RXonly`
+echo RX_STATS: $RX_STATS
+echo TX_STATS: $TX_STATS
 START_STATS=`./adminstats.sh` 
 echo START STATS: $START_STATS
 
@@ -457,8 +457,8 @@ do
    echo START STATS: $START_STATS
    TX_STATS=`./adminstats.sh TXonly`
    RX_STATS=`./adminstats.sh RXonly`
-   echo $TX_STATS=`./adminstats.sh TXonly`
-   echo $RX_STATS=`./adminstats.sh RXonly`
+   echo RX_STATS: $RX_STATS
+   echo TX_STATS: $TX_STATS
    echo CURRENT STATS: $CURRENT_STATS
    #./adminstats.sh
 
