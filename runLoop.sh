@@ -459,6 +459,11 @@ do
    let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
    let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
 
+   echo 0
+   echo $DELTA_TX_STATS
+   echo $DELTA_RX_STATS
+   echo 0b
+
    echo 1
    wordlen=`echo $DELTA_TX_STATS | awk '{print length($0)}'`
    echo wordlen: $wordlen
@@ -501,6 +506,9 @@ do
 
    let DELTA_TX_STATS_ITER=$DELTA_TX_STATS/$iter
 
+   echo 9
+   echo $DELTA_TX_STATS_ITER
+
    wordlen=`echo $DELTA_TX_STATS_ITER | awk '{print length($0)}'`
    #echo DeltaTxStatusIter wordlen: $wordlen
    if [ $wordlen -eq 8 ]; then
@@ -530,6 +538,13 @@ do
       echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
    fi
 
+
+
+   echo here
+   echo $DELTA_RX_STATS
+   echo here2
+
+
    wordlen=`echo $DELTA_RX_STATS | awk '{print length($0)}'`
    if [ $wordlen -eq 8 ]; then
       let MBytes=$DELTA_RX_STATS*10 # multiply by 10 to get fraction
@@ -558,6 +573,9 @@ do
    fi
 
    let DELTA_RX_STATS_ITER=$DELTA_RX_STATS/$iter
+
+   echo 10
+   echo $DELTA_RX_STATS_ITER
 
    wordlen=`echo $DELTA_RX_STATS_ITER | awk '{print length($0)}'`
    if [ $wordlen -eq 8 ]; then
