@@ -619,6 +619,7 @@ do
       echo DELTA_RX_STATS: $DELTA_RX_STATS \($kilobytePrint KB\)
    fi
 
+   let DELTA_RX_STATS_ITER=$DELTA_RX_STATS/$iter
 
    wordlen=`echo $DELTA_RX_STATS_ITER | awk '{print length($0)}'`
    echo DeltaRxStatusIter wordlen: $wordlen
