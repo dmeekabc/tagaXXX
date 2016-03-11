@@ -15,7 +15,7 @@ if [ $# -eq 1 ]; then
       echo IP Usage: $INTERFACE: `ifconfig $INTERFACE | grep RX | grep bytes`
    fi
 else
-  echo 4
+  #echo 4
   echo IP Usage: $INTERFACE: `ifconfig $INTERFACE | grep RX | grep bytes`
 fi
 
