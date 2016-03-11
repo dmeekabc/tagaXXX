@@ -103,7 +103,7 @@ if [ $TESTTYPE == "MCAST" ]; then
     HOST=`cat $TAGA_DIR/hostsToIps.txt | grep $target\\\. | cut -d"." -f 5`
     SOURCE_FILE_TAG=$TEST_DESCRIPTION\_$HOST\_*$target\_
     # get our target receive count
-    let targetReceivedCount=`cat $SOURCE_FILE_TAG* | grep -v $target | wc -l`
+    let targetReceivedCount=`cat $SOURCE_FILE_TAG* 2>/dev/null | grep -v $target | wc -l`
     let grossReceivedCount=$grossReceivedCount+$targetReceivedCount
   done
 else
@@ -231,7 +231,7 @@ else
    let expectedCount=$expectedCount*$expectedCount2
 fi
 
-let numerator=`cat $outputDir/* | wc -l`
+let numerator=`cat $outputDir/* 2>/dev/null | wc -l`
 let numerator=$numerator*10000
 let denominator=$expectedCount
 let percent=$numerator/$denominator 
@@ -257,7 +257,7 @@ fi
 #echo TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Total Count:`cat $outputDir/* | wc -l` / $expectedCount exp msgs \($percent%\) >> $TAGA_DIR/counts.txt
 
 # build up the buffer
-printCount=`cat $outputDir/* | wc -l`
+printCount=`cat $outputDir/* 2>/dev/null | wc -l`
 buffer1="TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Total Count:$printCount / $expectedCount exp msgs "
 # pad the buffer
 buflen=`echo $buffer1 | awk '{print length($0)}'`
@@ -342,7 +342,7 @@ do
       touch /tmp/curcount.txt /tmp/curcount2.txt
       
       # write to the curcount.txt file
-      cat $SOURCE_FILE_TAG* | grep $target\\\. > /tmp/curcount.txt 2>/dev/null
+      cat $SOURCE_FILE_TAG* 2>/dev/null | grep $target\\\. > /tmp/curcount.txt 2>/dev/null
 
       # mcast or ucast? 
       if [ $TESTTYPE == "MCAST" ]; then

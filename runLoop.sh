@@ -18,16 +18,16 @@ ADMIN_STATS="TAGA: ADMIN STATS: "
 ADMIN_STATS="$ADMIN_STATS \"TAGA: ADMIN STATS: \""
 echo TAGA: ADMIN STATS: $ADMIN_STATS
 START_STATS=`./adminstats.sh`
-TX_STATS=`./adminstats.sh TXonly`
-RX_STATS=`./adminstats.sh RXonly`
+let TX_STATS=`./adminstats.sh TXonly`
+let RX_STATS=`./adminstats.sh RXonly`
 echo RX_STATS: $RX_STATS
 echo TX_STATS: $TX_STATS
 START_STATS=`./adminstats.sh` 
 echo START STATS: $START_STATS
-TX_START_STATS=$TX_STATS
-RX_START_STATS=$RX_STATS
-START_TX_STATS=$TX_STATS
-START_RX_STATS=$RX_STATS
+let TX_START_STATS=$TX_STATS
+let RX_START_STATS=$RX_STATS
+let START_TX_STATS=$TX_STATS
+let START_RX_STATS=$RX_STATS
 echo
 echo START_TX_STATS: $START_TX_STATS
 echo START_RX_STATS: $START_RX_STATS
@@ -496,10 +496,10 @@ do
 #   echo DELTA_TX_STATS: $DELTA_TX_STATS
 #   echo DELTA_RX_STATS: $DELTA_RX_STATS
 
-   TX_STATS=`./adminstats.sh TXonly`
-   RX_STATS=`./adminstats.sh RXonly`
-   CURRENT_TX_STATS=$TX_STATS
-   CURRENT_RX_STATS=$RX_STATS
+   let TX_STATS=`./adminstats.sh TXonly`
+   let RX_STATS=`./adminstats.sh RXonly`
+   let CURRENT_TX_STATS=$TX_STATS
+   let CURRENT_RX_STATS=$RX_STATS
    #let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
    #let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
    #echo RX_STATS: $RX_STATS
@@ -512,8 +512,41 @@ do
    echo START_RX_STATS: $START_RX_STATS
    echo CURRENT_TX_STATS: $CURRENT_TX_STATS
    echo CURRENT_RX_STATS: $CURRENT_RX_STATS
+
+  
+
+   # dlm temp find me
+   #let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
+   #let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
    let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
    let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
+
+   echo DELTA_TX_STATS: $DELTA_TX_STATS
+   echo DELTA_RX_STATS: $DELTA_RX_STATS
+
+   wordlen=`echo $DELTA_TX_STATS | awk '{print length($0)}'`
+   echo DeltaTxStatus wordlen: $wordlen
+   if [ $wordlen -eq 7 ]; then
+      let MBytes=$DELTA_TX_STATS/1000000
+      echo DELTA_TX_STATS: $DELTA_TX_STATS \($MBytes MB\)
+   elif [ $wordlen -eq 6 ]; then
+      let KBytes=$DELTA_TX_STATS/1000
+      echo DELTA_TX_STATS: $DELTA_TX_STATS \($KBytes KB\)
+   fi
+
+   echo DELTA_TX_STATS: $DELTA_TX_STATS
+   echo DELTA_RX_STATS: $DELTA_RX_STATS
+
+   wordlen=`echo $DELTA_RX_STATS | awk '{print length($0)}'`
+   echo DeltaRxStatus wordlen: $wordlen
+   if [ $wordlen -eq 7 ]; then
+      let MBytes=$DELTA_RX_STATS/1000000
+      echo DELTA_RX_STATS: $DELTA_RX_STATS \($MBytes MB\)
+   elif [ $wordlen -eq 6 ]; then
+      let KBytes=$DELTA_RX_STATS/1000
+      echo DELTA_RX_STATS: $DELTA_RX_STATS \($KBytes KB\)
+   fi
+
    echo DELTA_TX_STATS: $DELTA_TX_STATS
    echo DELTA_RX_STATS: $DELTA_RX_STATS
 
