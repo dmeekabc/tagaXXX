@@ -16,9 +16,10 @@ startDTG=$6
 
 # get the average iteration duration
 
-echo $deltaEpoch
-echo $iter
-echo averageDuration=$deltaEpoch/$iter
+#echo $deltaEpoch
+#echo $iter
+#echo averageDuration=$deltaEpoch/$iter
+
 let averageDuration=$deltaEpoch/$iter
 # special handling for iteration 1
 if [ $iter -eq 1 ]; then

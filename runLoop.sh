@@ -363,6 +363,7 @@ do
    #  echo $printableAverageDeltaCum > $LOG_DIR/_deltaCum.out
    #  echo $printableAverageDeltaCum > $LOG_DIR/d_deltaCum.out
    #else
+     echo; echo Convergence:
      echo $printableDeltaCum
      echo $printableDeltaCum > /tmp/deltaCum.out
      # make the log dir
@@ -377,6 +378,7 @@ do
    #############################################################
 
    echo $printableAverageDeltaCum
+   echo
    echo $printableAverageDeltaCum > /tmp/averageDeltaCum.out
    echo $printableAverageDeltaCum > $LOG_DIR/averageDeltaCum.out
    echo $printableAverageDeltaCum > $LOG_DIR/_averageDeltaCum.out
@@ -412,24 +414,20 @@ do
           LAST_CONVERGED=$currentAvgDelta
 
       else
-         echo Not Converged marker 1
+         echo Not Converged marker 1 >/dev/null
       fi
     else
-      echo Not Converged marker 2
+      echo Not Converged marker 2 >/dev/null
    fi
    fi
    fi
 
-   echo LastConverged: $LAST_CONVERGED >> counts.txt
-   echo LastConverged: $LAST_CONVERGED >> counts.txt
-   echo LastConverged: $LAST_CONVERGED >> counts.txt
    echo LastConverged: $LAST_CONVERGED >> counts.txt
    echo LastConverged: $LAST_CONVERGED >> counts.txt
    echo LastConverged: $LAST_CONVERGED >> counts.txt
 
    # new header
    echo `date` LastConverged: $LAST_CONVERGED >> counts.txt
-
 
    # count and sort and display results matrix
    # note, startDTG must be last param since includes spaces
