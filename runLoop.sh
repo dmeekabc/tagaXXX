@@ -508,27 +508,27 @@ do
       let MBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1-2`.`echo $MBytes | cut -c3`
-      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)"
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER ($megabytePrint MB per Iter)"
    elif [ $wordlen -eq 7 ]; then
       let MBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1`.`echo $MBytes | cut -c2`
-      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)"
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER ($megabytePrint MB per Iter)"
    elif [ $wordlen -eq 6 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-3`.`echo $KBytes | cut -c4`
-      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER ($kilobytePrint KB per Iter)"
    elif [ $wordlen -eq 5 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-2`.`echo $KBytes | cut -c3-4`
-      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER ($kilobytePrint KB per Iter)"
    elif [ $wordlen -eq 4 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1`.`echo $KBytes | cut -c2-4`
-      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER ($kilobytePrint KB per Iter)"
    else
    #   echo 7a
       echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER
