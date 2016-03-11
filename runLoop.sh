@@ -448,8 +448,6 @@ do
 
    echo
    echo "TAGA:Iter:$iter START STATS:   $START_STATS"
-   echo "TAGA:Iter:$iter START STATS:   $START_STATS"
-   echo "TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS"
    echo "TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS"
 
    let TX_STATS=`./adminstats.sh TXonly`
