@@ -77,7 +77,7 @@ do
   elif [ $tgtlen -eq 10 ] ; then
     row=$target\....... 
   else
-    row=$target\....... 
+    row=$target\........ 
   fi
 
   let j=0
@@ -166,14 +166,14 @@ do
     fi
     
     # append count to the row string
-    row="$row  $curcount"
+    row="$row $curcount"
 
   done # continue to next target
 
   row="$row"" "
 
-  let ROW_SIZE=66
   let ROW_SIZE=62
+  let ROW_SIZE=66
   #let ROW_SIZE=58
   let rowlen=`echo $row | awk '{print length($0)}'`
   let padlen=$ROW_SIZE-$rowlen
@@ -235,7 +235,7 @@ do
      echo nothing to pad >/dev/null
   fi
 
-  column_cumulative="$column_cumulative  $value"
+  column_cumulative="$column_cumulative $value"
 
   let count=$count-1
   if [ $count -eq 0 ] ; then
@@ -244,13 +244,15 @@ do
 
 done
 
-column_cumulative="$column_cumulative"" "
+#column_cumulative="$column_cumulative"" "
 
 let ROW_SIZE=48
 let ROW_SIZE=51
 let ROW_SIZE=47
-let ROW_SIZE=46
 let ROW_SIZE=44
+let ROW_SIZE=46
+let ROW_SIZE=45
+let ROW_SIZE=49
 let rowlen=`echo $column_cumulative | awk '{print length($0)}'`
 let padlen=$ROW_SIZE-$rowlen
 
@@ -262,7 +264,7 @@ do
   let i=$i-1
 done
 
-column_cumulative="$column_cumulative"" "
+#column_cumulative="$column_cumulative"" "
 
 # get the padding
 let valuelen=`echo $column_cumulative_count | awk '{print length($0)}'`
@@ -286,7 +288,7 @@ echo >> $TAGA_DIR/counts.txt
 echo >> $TAGA_DIR/countsReceives.txt
 
 # Print the final (Totals) row
-row="Receiver Totals:$column_cumulative"
+row="Receiver Totals: $column_cumulative"
 echo "$row"
 echo "$row" >> $TAGA_DIR/counts.txt
 echo "$row" >> $TAGA_DIR/countsReceives.txt

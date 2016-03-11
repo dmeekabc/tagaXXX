@@ -168,8 +168,9 @@ buffer1="TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Rec'd Count:$printCo
 buflen=`echo $buffer1 | awk '{print length($0)}'`
 let ROW_SIZE=66
 let ROW_SIZE=60
-let ROW_SIZE=62
+let ROW_SIZE=68
 let ROW_SIZE=64
+let ROW_SIZE=62
 let padlen=$ROW_SIZE-$buflen
 # add the padding
 let i=$padlen
@@ -262,8 +263,9 @@ buffer1="TAGA:Iter:$iter: Tot Files:`ls $outputDir | wc -l` Total Count:$printCo
 buflen=`echo $buffer1 | awk '{print length($0)}'`
 let ROW_SIZE=66
 let ROW_SIZE=60
-let ROW_SIZE=62
+let ROW_SIZE=68
 let ROW_SIZE=64
+let ROW_SIZE=62
 let padlen=$ROW_SIZE-$buflen
 # add the padding
 let i=$padlen
@@ -318,9 +320,9 @@ do
   elif [ $tgtlen -eq 11 ] ; then
     row=$target\...... 
   elif [ $tgtlen -eq 10 ] ; then
-    row=$target\....... 
+    row=$target\........ 
   else
-    row=$target\....... 
+    row=$target\........ 
   fi
 
   # get the sent count for (to) this target
@@ -401,15 +403,15 @@ do
     fi 
     
     # append count to the row string
-    row="$row  $curcount"
+    row="$row $curcount"
 
   done # continue to next target
 
   row="$row"" "
 
   # dlm temp
-  let ROW_SIZE=66
   let ROW_SIZE=62
+  let ROW_SIZE=66
   let rowlen=`echo $row | awk '{print length($0)}'`
 #  echo $rowlen
   let padlen=$ROW_SIZE-$rowlen
