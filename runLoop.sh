@@ -24,6 +24,11 @@ echo RX_STATS: $RX_STATS
 echo TX_STATS: $TX_STATS
 START_STATS=`./adminstats.sh` 
 echo START STATS: $START_STATS
+TX_START_STATS=$TX_STATS
+RX_START_STATS=$RX_STATS
+echo
+echo TX_START_STATS: $TX_START_STATS
+echo RX_START_STATS: $RX_START_STATS
 
 #########################################
 # Update the MASTER entry in the config
@@ -457,10 +462,20 @@ do
    echo TAGA:Iter:$iter START STATS: $START_STATS
    TX_STATS=`./adminstats.sh TXonly`
    RX_STATS=`./adminstats.sh RXonly`
+
+   TX_CURRENT_STATS=$TX_STATS
+   RX_CURRENT_STATS=$RX_STATS
+
    echo TAGA:Iter:$iter RX_STATS: $RX_STATS
    echo TAGA:Iter:$iter TX_STATS: $TX_STATS
    echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
    echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
+
+   echo
+   echo TX_START_STATS: $TX_START_STATS
+   echo RX_START_STATS: $RX_START_STATS
+   echo TX_CURRENT_STATS: $TX_CURRENT_STATS
+   echo RX_CURRENT_STATS: $RX_CURRENT_STATS
 
    sleep 5
 
