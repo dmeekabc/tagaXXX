@@ -448,22 +448,21 @@ do
    done
    sleep 2
 
-   echo TAGA: ADMIN STATS: $ADMIN_STATS
-   echo TAGA: ADMIN STATS: $ADMIN_STATS
-   echo TAGA: ADMIN STATS: $ADMIN_STATS
-   echo TAGA: ADMIN STATS: $ADMIN_STATS
+   echo TAGA:Iter:$iter ADMIN STATS: $ADMIN_STATS
+   echo TAGA:Iter:$iter ADMIN STATS: $ADMIN_STATS
+   echo TAGA:Iter:$iter ADMIN STATS: $ADMIN_STATS
+   echo TAGA:Iter:$iter ADMIN STATS: $ADMIN_STATS
    CURRENT_STATS=`./adminstats.sh`
-   echo START STATS: $START_STATS
-   echo START STATS: $START_STATS
+   echo TAGA:Iter:$iter START STATS: $START_STATS
+   echo TAGA:Iter:$iter START STATS: $START_STATS
    TX_STATS=`./adminstats.sh TXonly`
    RX_STATS=`./adminstats.sh RXonly`
-   echo RX_STATS: $RX_STATS
-   echo TX_STATS: $TX_STATS
-   echo CURRENT STATS: $CURRENT_STATS
-   #./adminstats.sh
+   echo TAGA:Iter:$iter RX_STATS: $RX_STATS
+   echo TAGA:Iter:$iter TX_STATS: $TX_STATS
+   echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
+   echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
 
-   sleep 2
-   sleep 2
+   sleep 5
 
    # remove old and put current data in generic output directory
    #rm -rf $OUTPUT_DIR/output
