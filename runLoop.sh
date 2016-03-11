@@ -14,25 +14,12 @@ if [ $? -eq 255 ]; then
   exit 255
 fi
 
-ADMIN_STATS="TAGA: ADMIN STATS: "
-ADMIN_STATS="$ADMIN_STATS \"TAGA: ADMIN STATS: \""
-echo TAGA: ADMIN STATS: $ADMIN_STATS
-START_STATS=`./adminstats.sh`
+START_STATS=`./adminstats.sh` 
 let TX_STATS=`./adminstats.sh TXonly`
 let RX_STATS=`./adminstats.sh RXonly`
-echo RX_STATS: $RX_STATS
-echo TX_STATS: $TX_STATS
-START_STATS=`./adminstats.sh` 
-echo START STATS: $START_STATS
-let TX_START_STATS=$TX_STATS
-let RX_START_STATS=$RX_STATS
 let START_TX_STATS=$TX_STATS
 let START_RX_STATS=$RX_STATS
-#echo
-#echo START_TX_STATS: $START_TX_STATS
-#echo START_RX_STATS: $START_RX_STATS
-#echo TX_START_STATS: $TX_START_STATS
-#echo RX_START_STATS: $RX_START_STATS
+
 
 #########################################
 # Update the MASTER entry in the config
@@ -460,99 +447,57 @@ do
    CURRENT_STATS=`./adminstats.sh`
 
    echo
-   echo TAGA:Iter:$iter START STATS: $START_STATS
-   echo TAGA:Iter:$iter START STATS: $START_STATS
-   echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
-   echo TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS
-
-#   TX_STATS=`./adminstats.sh TXonly`
-#   RX_STATS=`./adminstats.sh RXonly`
-#   TX_CURRENT_STATS=$TX_STATS
-#   RX_CURRENT_STATS=$RX_STATS
-
-#   echo TAGA:Iter:$iter RX_STATS: $RX_STATS
-#   echo TAGA:Iter:$iter TX_STATS: $TX_STATS
-
-#   echo
-#   echo TX_START_STATS: $TX_START_STATS
-#   echo RX_START_STATS: $RX_START_STATS
-#   echo TX_CURRENT_STATS: $TX_CURRENT_STATS
-#   echo RX_CURRENT_STATS: $RX_CURRENT_STATS
-
-   #let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
-   #let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
-   #echo DELTA_TX_STATS: $DELTA_TX_STATS
-   #echo DELTA_RX_STATS: $DELTA_RX_STATS
-
-#   CURRENT_TX_STATS=$TX_STATS
-#   CURRENT_RX_STATS=$RX_STATS
-#   let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
-#   let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
-#   echo DELTA_TX_STATS: $DELTA_TX_STATS
-#   echo DELTA_RX_STATS: $DELTA_RX_STATS
-
-#   echo RX_STATS: $RX_STATS
-#   echo TX_STATS: $TX_STATS
-#   echo DELTA_TX_STATS: $DELTA_TX_STATS
-#   echo DELTA_RX_STATS: $DELTA_RX_STATS
+   echo "TAGA:Iter:$iter START STATS:   $START_STATS"
+   echo "TAGA:Iter:$iter START STATS:   $START_STATS"
+   echo "TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS"
+   echo "TAGA:Iter:$iter CURRENT STATS: $CURRENT_STATS"
 
    let TX_STATS=`./adminstats.sh TXonly`
    let RX_STATS=`./adminstats.sh RXonly`
    let CURRENT_TX_STATS=$TX_STATS
    let CURRENT_RX_STATS=$RX_STATS
-   #let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
-   #let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
-   #echo RX_STATS: $RX_STATS
-   #echo TX_STATS: $TX_STATS
-   #echo TX_START_STATS: $TX_START_STATS
-   #echo RX_START_STATS: $RX_START_STATS
-   #echo TX_START_STATS: $TX_START_STATS
-   #echo RX_START_STATS: $RX_START_STATS
-   #echo START_TX_STATS: $START_TX_STATS
-   #echo START_RX_STATS: $START_RX_STATS
-   #echo CURRENT_TX_STATS: $CURRENT_TX_STATS
-   #echo CURRENT_RX_STATS: $CURRENT_RX_STATS
-
-  
-
-   # dlm temp find me
-   #let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
-   #let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
    let DELTA_TX_STATS=$CURRENT_TX_STATS-$START_TX_STATS
    let DELTA_RX_STATS=$CURRENT_RX_STATS-$START_RX_STATS
 
-   #echo DELTA_TX_STATS: $DELTA_TX_STATS
-   #echo DELTA_RX_STATS: $DELTA_RX_STATS
-
+   echo 1
    wordlen=`echo $DELTA_TX_STATS | awk '{print length($0)}'`
-   #echo DeltaTxStatus wordlen: $wordlen
-   echo TAGA:Iter:$iter START STATS: $START_STATS
+   echo wordlen: $wordlen
    if [ $wordlen -eq 8 ]; then
+      echo 2
       let MBytes=$DELTA_TX_STATS*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1-2`.`echo $MBytes | cut -c3`
-      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($megabytePrint MB\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($megabytePrint MB\)"
    elif [ $wordlen -eq 7 ]; then
+      echo 3
       let MBytes=$DELTA_TX_STATS*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1`.`echo $MBytes | cut -c2`
-      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($megabytePrint MB\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($megabytePrint MB\)"
    elif [ $wordlen -eq 6 ]; then
+      echo 4
       let KBytes=$DELTA_TX_STATS*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-3`.`echo $KBytes | cut -c4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)"
    elif [ $wordlen -eq 5 ]; then
+      echo 5
       let KBytes=$DELTA_TX_STATS*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-2`.`echo $KBytes | cut -c3-4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)"
    elif [ $wordlen -eq 4 ]; then
+      echo 6
       let KBytes=$DELTA_TX_STATS*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1`.`echo $KBytes | cut -c2-4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS \($kilobytePrint KB\)"
+   else
+      echo 7
+      echo TAGA:Iter:$iter DELTA_TX_STATS: $DELTA_TX_STATS 
    fi
+
+   echo 8
 
    let DELTA_TX_STATS_ITER=$DELTA_TX_STATS/$iter
 
@@ -562,37 +507,30 @@ do
       let MBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1-2`.`echo $MBytes | cut -c3`
-      echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)"
    elif [ $wordlen -eq 7 ]; then
       let MBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
       megabytePrint=`echo $MBytes | cut -c1`.`echo $MBytes | cut -c2`
-      echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($megabytePrint MB per Iter\)"
    elif [ $wordlen -eq 6 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-3`.`echo $KBytes | cut -c4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
    elif [ $wordlen -eq 5 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1-2`.`echo $KBytes | cut -c3-4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
    elif [ $wordlen -eq 4 ]; then
       let KBytes=$DELTA_TX_STATS_ITER*10 # multiply by 10 to get fraction
       let KBytes=$KBytes/1000
       kilobytePrint=`echo $KBytes | cut -c1`.`echo $KBytes | cut -c2-4`
-      echo TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)
+      echo "TAGA:Iter:$iter DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER \($kilobytePrint KB per Iter\)"
    fi
 
-
-   #echo DELTA_TX_STATS: $DELTA_TX_STATS
-   #echo DELTA_RX_STATS: $DELTA_RX_STATS
-   #echo DELTA_TX_STATS: $DELTA_TX_STATS
-   #echo DELTA_RX_STATS: $DELTA_RX_STATS
-
    wordlen=`echo $DELTA_RX_STATS | awk '{print length($0)}'`
-   #echo DeltaRxStatus wordlen: $wordlen
    if [ $wordlen -eq 8 ]; then
       let MBytes=$DELTA_RX_STATS*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
@@ -622,7 +560,6 @@ do
    let DELTA_RX_STATS_ITER=$DELTA_RX_STATS/$iter
 
    wordlen=`echo $DELTA_RX_STATS_ITER | awk '{print length($0)}'`
-   #echo DeltaRxStatusIter wordlen: $wordlen
    if [ $wordlen -eq 8 ]; then
       let MBytes=$DELTA_RX_STATS_ITER*10 # multiply by 10 to get fraction
       let MBytes=$MBytes/1000000
@@ -650,34 +587,7 @@ do
       echo TAGA:Iter:$iter DELTA_RX_STATS_ITER: $DELTA_RX_STATS_ITER \($kilobytePrint KB per Iter\)
    fi
 
-
-   #echo DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER
-   #echo DELTA_RX_STATS_ITER: $DELTA_RX_STATS_ITER
-   #echo DELTA_TX_STATS_ITER: $DELTA_TX_STATS_ITER
-   #echo DELTA_RX_STATS_ITER: $DELTA_RX_STATS_ITER
-
-
-
-#   if [ $wordlen -eq 7 ]; then
-#      let MBytes=$DELTA_RX_STATS*10 # multiply by 10 to get fraction
-#      let MBytes=$MBytes/1000000
-#      megabytePrint=`echo $MBytes | cut -c1`.`echo $KBytes | cut -c2`
-#      echo DELTA_RX_STATS: $DELTA_RX_STATS \($megabytePrint MB\)
-#   elif [ $wordlen -eq 6 ]; then
-#      let KBytes=$DELTA_RX_STATS*10 # multiply by 10 to get fraction
-#      let KBytes=$KBytes/1000
-#      kilobytePrint=`echo $KBytes | cut -c1-3`.`echo $KBytes | cut -c4`
-#      echo DELTA_RX_STATS: $DELTA_RX_STATS \($kilobytePrint KB\)
-#   fi
-
-   #echo DELTA_TX_STATS: $DELTA_TX_STATS
-   #echo DELTA_RX_STATS: $DELTA_RX_STATS
-
    sleep 5
-
-   # remove old and put current data in generic output directory
-   #rm -rf $OUTPUT_DIR/output
-   #cp -r $outputDir $OUTPUT_DIR/output
 
    # move output to the archive
    mv $TAGA_DIR/output/output_* $SCRIPTS_DIR/archive 2>/dev/null
