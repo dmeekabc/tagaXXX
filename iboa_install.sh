@@ -128,6 +128,30 @@ else
    echo "  fi"                                                                   >> $IBOA_FILE
    echo "}"                                                                      >> $IBOA_FILE
 
+   # create the wrapAliasPrevious function for the 'wrap alias previous' (previous command) (wap) alias
+   echo "function __wrapAliasPrevious() {"                                     >> $IBOA_FILE
+   echo "  if [ \$# -eq 1 ]; then"                                               >> $IBOA_FILE
+   echo "    which \$1 "                                                         >> $IBOA_FILE
+   echo "    if [ \$? -eq 0 ]; then"                                             >> $IBOA_FILE
+   echo "      echo the \$1 command exists - no action taken!"                   >> $IBOA_FILE
+   echo "    else"                                                               >> $IBOA_FILE
+   echo "      alias \$1  >/dev/null "                                           >> $IBOA_FILE
+   echo "      if [ \$? -eq 0 ]; then"                                           >> $IBOA_FILE
+   echo "        echo the \$1 alias exists - no action taken!"                   >> $IBOA_FILE
+   echo "      else"                                                             >> $IBOA_FILE
+   echo "        CMD=\`history | tail -n 2 | head -n 1 | cut -c8-\`"             >> $IBOA_FILE
+   echo "        echo \"alias \$1='while true; do echo; date; \$CMD ; sleep 1; done'\" >> $IBOA_USER_FILE" >> $IBOA_FILE
+   echo "        if [ \$? -eq 0 ]; then"                                         >> $IBOA_FILE
+   echo "          source $IBOA_USER_FILE"                                       >> $IBOA_FILE
+   echo "          echo alias\(es\) successfully installed into $IBOA_USER_FILE" >> $IBOA_FILE
+   echo "        fi"                                                             >> $IBOA_FILE
+   echo "      fi"                                                               >> $IBOA_FILE
+   echo "    fi"                                                                 >> $IBOA_FILE
+   echo "  else"                                                                 >> $IBOA_FILE
+   echo "    echo this alias requires a single parameter - no action taken!"     >> $IBOA_FILE
+   echo "  fi"                                                                   >> $IBOA_FILE
+   echo "}"                                                                      >> $IBOA_FILE
+
    # create the 'install alias' (ia/iax) aliases
    echo "alias iau='__insertAliasUser'"                                          >> $IBOA_FILE
    echo "alias iag='__insertAliasGroup'"                                         >> $IBOA_FILE
