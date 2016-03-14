@@ -8,8 +8,10 @@
 TAGA_DIR=~/scripts/taga
 source $TAGA_DIR/config
 
-#echo $0 executing at `date`
 echo $0 $MYIP executing at `date`
+
+# sample simulations require $HOME/python dir
+mkdir $HOME/python 2>/dev/null
 
 # if started with flag then use it
 if [ $# -eq 1 ]; then
@@ -70,7 +72,7 @@ if [ $PRIMARY_SIM_SERVER_ON -eq 1 ]; then
    $PRIMARY_SERVER_STARTCMD &
 
 else
-   echo Primary Simulation Server Disabled - *not* starting Server.....
+   echo Primary Simulation Server Disabled - NOT STARTING Primary Simulation Server.....
 fi
 
 
@@ -79,7 +81,7 @@ fi
 ################################################3
 let i=$MAX_ENVIRON_SIM_LOOPS
 if [ $i -eq 0 ]; then
-  echo $0 exiting since ENVIRON environ simulationFlag is disabled
+  #echo $0 exiting since ENVIRON environ simulationFlag is disabled 
   exit
 fi
 
