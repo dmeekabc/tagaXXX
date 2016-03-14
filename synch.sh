@@ -15,6 +15,7 @@ do
    SCP_SOURCE_STR="$SCP_SOURCE_STR *.txt"  
    SCP_SOURCE_STR="$SCP_SOURCE_STR host*"  
    SCP_SOURCE_STR="$SCP_SOURCE_STR config"
+   SCP_SOURCE_STR="$SCP_SOURCE_STR config_overrides"
    SCP_SOURCE_STR="$SCP_SOURCE_STR *.template"
 
    # send the files to the destination
