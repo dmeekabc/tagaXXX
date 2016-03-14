@@ -355,7 +355,7 @@ TEST_DESCRIPTION="taga_anycast"
 # override configs in the confiig_overrides file
 ##############################################
 if [ -s $TAGA_DIR/config_overrides ] ; then
-  echo NOTICE: config is being overriden by config_overrides file
+  #echo NOTICE: config is being overriden by config_overrides file
   source $TAGA_DIR/config_overrides
 fi
 
