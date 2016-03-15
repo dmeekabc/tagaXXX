@@ -256,6 +256,10 @@ DURATION2=40
 DURATION2=60
 DURATION2=10
 
+# end of iteration delay 
+#END_OF_ITER_DELAY=60 #0
+#END_OF_ITER_DELAY_PRINT_MODULUS=10 #0
+
 # try to disable traffic (MSGCOUNT == 0 does not work!)
 #MSGRATE=0.0 
 #MSGCOUNT=0
@@ -350,6 +354,21 @@ NET_POLICY_NM_RATE=10 # 10 percent thruput rate allowed for nm traffic
 ##############################################
 STATUS_FILE="/tmp/taga_status.txt"
 TEST_DESCRIPTION="taga_anycast"
+
+##############################################
+# Note: TAGA provides for three levels of config
+#  (1) primary config above 
+#  (2) extended config below 
+#  (3) overrides below and last
+##############################################
+
+##############################################
+# extend configs in the confiig_extensions file
+##############################################
+if [ -s $TAGA_DIR/config_extensions ] ; then
+  #echo NOTICE: config is being extended by config_extensions file
+  source $TAGA_DIR/config_extensions
+fi
 
 ##############################################
 # override configs in the confiig_overrides file
