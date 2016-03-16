@@ -341,6 +341,7 @@ fi
 # DURATION depends on rate and count above
 let DURATION1=$MSGCOUNT/$MSGRATE
 let DURATION2=$TARGET_COUNT*10
+let DURATION2=$TARGET_COUNT*8
 #echo $DURATION1
 #echo $DURATION2
 
