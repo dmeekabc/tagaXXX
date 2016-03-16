@@ -27,13 +27,15 @@ fi
 
 # if we are in the listener list, then listen for traffic
 if $TAGA_DIR/hostList.sh | grep `hostname` >/dev/null ; then
-
   echo Running tcpdump on `hostname` | tee $STATUS_FILE 
-
-  tcpdump -n -s 200 -i $MYINTERFACE $myproto port $SOURCEPORT -l        \
-     <$SCRIPTS_DIR/taga/passwd.txt | tee                         \
+  if [ $TAGA_DISPLAY == "VERBOSE" ]; then
+    tcpdump -n -s 200 -i $MYINTERFACE $myproto port $SOURCEPORT -l   \
+     <$SCRIPTS_DIR/taga/passwd.txt | tee                             \
      /tmp/$TEST_DESCRIPTION\_`hostname`_$MYINTERFACE\_$MY_PARAM_IP\_`date +%j%H%M%S` 
-
+  else
+    tcpdump -n -s 200 -i $MYINTERFACE $myproto port $SOURCEPORT -l   \
+     <$SCRIPTS_DIR/taga/passwd.txt > /tmp/$TEST_DESCRIPTION\_`hostname`_$MYINTERFACE\_$MY_PARAM_IP\_`date +%j%H%M%S` 
+  fi
 else
   echo `hostname` is not in the list of Traffic/PLI Receivers | tee $STATUS_FILE 
   echo $0 Exiting with no action | tee $STATUS_FILE 
