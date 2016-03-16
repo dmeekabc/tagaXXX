@@ -390,6 +390,11 @@ do
        if [ $MINUTES -gt 0 ] ; then 
 
           if [ $MINUTES -eq 1 ]; then
+
+             # 15 Mar 2016, set valid to true here
+             # set valid to true
+             let valid=1
+
              DELTA2=`echo $DELTA | cut -c2-`
              let SECS=60000000000-$DELTA2
              let SECS=$SECS/1000
