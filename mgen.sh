@@ -61,7 +61,13 @@ if $TAGA_DIR/hostList.sh | grep `hostname` >/dev/null ; then
   else
     # UCAST UDP
     # start the UDP listener in background
-    mgen port $MYPORT & 
+
+    if [ $TAGA_DISPLAY == "VERBOSE" ]; then
+      mgen port $MYPORT & 
+    else
+      mgen port $MYPORT > /dev/null  & 
+    fi
+
   fi
 else
   echo `hostname` is not in the list of Traffic/PLI Receivers | tee $STATUS_FILE

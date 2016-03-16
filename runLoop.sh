@@ -600,5 +600,9 @@ do
    # create output specific to this iteration from the two baseline files
    diff /tmp/runLoop.sh.out.before /tmp/runLoop.sh.out.after | cut -c3- > /tmp/runLoop.sh.out.iter
 
+
+   # sleep end of iteration delay time
+   $TAGA_DIR/iboaDelay.sh $END_OF_ITER_DELAY $END_OF_ITER_DELAY_PRINT_MODULUS
+
 done
 
