@@ -251,14 +251,6 @@ MSGLEN=894
 MSGLEN=194
 MSGLEN=94
 
-# DURATION depends on rate and count above
-let DURATION1=$MSGCOUNT/$MSGRATE
-#echo $DURATION1
-DURATION2=20
-DURATION2=20
-DURATION2=40
-DURATION2=60
-DURATION2=10
 
 # end of iteration delay 
 END_OF_ITER_DELAY=60 #0
@@ -343,9 +335,14 @@ else
    # multiple (all) other targets in other list
    OTHER_LIST=`echo $targetList | sed s/$MYIP//g` 
 fi
-
-
 #echo $OTHER_LIST
+
+
+# DURATION depends on rate and count above
+let DURATION1=$MSGCOUNT/$MSGRATE
+let DURATION2=$TARGET_COUNT*10
+#echo $DURATION1
+#echo $DURATION2
 
 ##############################################
 # others / static constants
