@@ -17,5 +17,6 @@ do
 done
 
 # do myself last
+echo processing, cleaning $MYIP
 ssh -l $MYLOGIN_ID $MYIP $TAGA_DIR/stop.sh  <$TAGA_DIR/passwd.txt
 
